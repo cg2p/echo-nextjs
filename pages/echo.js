@@ -17,7 +17,7 @@ class Echo extends Component {
   
   async handleSubmit (event) {
     event.preventDefault()
-    this.setState({ error: '' })
+    this.setState({ error: '', echoText: '' })
     const echoText = this.state.echoText;
     const url = 'http://localhost:3001/echo';
     
