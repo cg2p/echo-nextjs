@@ -2,6 +2,11 @@ import { Component } from 'react'
 import fetch from 'isomorphic-unfetch'
 import Layout from '../components/Layout'
 
+import getConfig from 'next/config'
+
+const { publicRuntimeConfig } = getConfig();
+const { service_host, service_port, service_api } = publicRuntimeConfig;
+
 class Echo extends Component {
   constructor (props) {
     super(props)
@@ -19,7 +24,8 @@ class Echo extends Component {
     event.preventDefault()
     this.setState({ error: '', echoText: '' })
     const echoText = this.state.echoText;
-    const url = 'http://localhost:3001/echo';
+    const url = 'http://' + service_host + ':' + service_port + '/' + service_api;
+    console.log('url is %s', url);
     
     var myheaders = new Headers({
       'Content-Type': 'application/json',
